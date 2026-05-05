@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبدالله شباط - سيرة ذاتية</title>
+    <title>السيرة الذاتية - عبدالله بن محمد شباط</title>
     
-    <!-- خطوط جوجل (Tajawal) لتناسب اللغة العربية -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- خطوط جوجل (Tajawal لسهولة القراءة والرسمية) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <!-- مكتبة الأيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* =========================================
-           1. المتغيرات والألوان (Color Palette)
+           1. المتغيرات - الألوان الرسمية (أبيض، كحلي، ذهبي)
            ========================================= */
         :root {
-            --primary-color: #1e3a8a; /* أزرق داكن احترافي */
-            --secondary-color: #3b82f6; /* أزرق فاتح */
-            --accent-color: #0d9488; /* أخضر مزرق (Teal) */
-            --bg-color: #f8fafc; /* خلفية فاتحة جداً */
-            --surface-color: #ffffff; /* لون الكروت */
-            --text-main: #1e293b; /* نصوص أساسية */
-            --text-muted: #64748b; /* نصوص ثانوية */
-            --border-color: #e2e8f0; /* حدود */
-            --transition: all 0.3s ease;
+            --bg-page: #f4f6f8; /* لون رمادي فاتح جداً لخلفية الصفحة */
+            --bg-paper: #ffffff; /* لون الورقة الأبيض */
+            
+            --navy-dark: #112240; /* كحلي رسمي وعميق */
+            --navy-light: #1a365d; 
+            
+            --gold-primary: #C5A059; /* ذهبي رسمي مطفأ */
+            --gold-light: #e8dcc4;
+            
+            --text-dark: #1e293b; /* نصوص أساسية */
+            --text-gray: #475569; /* نصوص ثانوية */
+            
+            --border-color: #e2e8f0;
         }
 
         /* =========================================
-           2. الإعدادات العامة (Reset & Typography)
+           2. الإعدادات العامة
            ========================================= */
         * {
             margin: 0;
@@ -38,583 +42,523 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding: 40px 20px;
         }
 
         a {
             text-decoration: none;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--secondary-color);
-        }
-
-        ul {
-            list-style: none;
+            color: inherit;
         }
 
         /* =========================================
-           3. التخطيط العام (Layout Components)
+           3. حاوية السيرة الذاتية (A4 Style)
            ========================================= */
-        .container {
-            max-width: 1100px;
+        .cv-container {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            background-color: var(--bg-paper);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 8px solid var(--gold-primary);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 50px;
+        /* =========================================
+           4. الهيدر (معلومات التواصل والاسم)
+           ========================================= */
+        .header {
+            background-color: var(--navy-dark);
+            color: #ffffff;
+            padding: 40px 50px;
+            text-align: right;
             position: relative;
-            font-weight: 800;
         }
 
-        .section-title::after {
+        /* زخرفة بسيطة في الهيدر */
+        .header::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
+            bottom: 0;
+            right: 0;
+            width: 100%;
             height: 4px;
-            background-color: var(--secondary-color);
-            border-radius: 2px;
+            background-color: var(--gold-primary);
         }
 
-        /* =========================================
-           4. الهيدر (Header / Hero Section)
-           ========================================= */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
+        .name {
+            font-size: 2.4rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            color: #ffffff;
         }
 
-        .hero-content h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            opacity: 0.9;
+        .job-title {
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+            font-weight: 500;
             margin-bottom: 20px;
         }
 
-        .contact-badges {
+        .contact-info {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 20px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
         }
 
-        .badge {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.95rem;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item i {
+            color: var(--gold-primary);
+        }
+
+        /* =========================================
+           5. الأقسام العامة (Sections)
+           ========================================= */
+        .section {
+            padding: 35px 50px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--navy-dark);
+            font-weight: 800;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition);
         }
 
-        .badge i {
-            font-size: 1.1rem;
-        }
-
-        .badge:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+        .section-title i {
+            color: var(--gold-primary);
+            font-size: 1.2rem;
         }
 
         /* =========================================
-           5. نبذة عني (About)
+           6. الملخص الاحترافي
            ========================================= */
-        .about-text {
-            background: var(--surface-color);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            font-size: 1.1rem;
+        .summary-text {
+            color: var(--text-gray);
+            font-size: 1.05rem;
             text-align: justify;
-            border-right: 5px solid var(--accent-color);
+            line-height: 1.9;
         }
 
         /* =========================================
-           6. الخبرات (Experience - Timeline)
+           7. الخبرات العملية (Timeline)
            ========================================= */
         .timeline {
             position: relative;
-            padding-right: 30px;
+            padding-right: 25px;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
             right: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--border-color);
+            top: 5px;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--gold-light);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 40px;
-            background: var(--surface-color);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            transition: var(--transition);
+            margin-bottom: 35px;
         }
 
-        .timeline-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-color: var(--primary-color);
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
-        .timeline-item::before {
-            content: '';
+        .timeline-dot {
             position: absolute;
-            right: -36px;
-            top: 30px;
-            width: 16px;
-            height: 16px;
+            right: -31px; /* 25px padding + 6px to center */
+            top: 6px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: var(--secondary-color);
-            border: 4px solid var(--bg-color);
-            box-shadow: 0 0 0 3px var(--secondary-color);
+            background-color: var(--gold-primary);
+            border: 3px solid var(--bg-paper);
         }
 
-        .job-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 1.2rem;
+            color: var(--navy-dark);
             font-weight: 700;
         }
 
-        .job-company {
-            color: var(--accent-color);
-            font-weight: 500;
-            margin-bottom: 15px;
-            display: inline-block;
+        .exp-date {
+            font-size: 0.9rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+            background-color: rgba(197, 160, 89, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
         }
 
-        .job-date {
-            float: left;
-            background: var(--bg-color);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .exp-company {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .exp-tasks {
+            list-style: none;
+        }
+
+        .exp-tasks li {
+            position: relative;
+            padding-right: 20px;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .exp-tasks li::before {
+            content: '■';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--gold-primary);
+            font-size: 0.6rem;
+            line-height: 2.5;
+        }
+
+        /* =========================================
+           8. المؤهلات العلمية
+           ========================================= */
+        .edu-item {
+            margin-bottom: 20px;
+            padding-right: 15px;
+            border-right: 3px solid var(--navy-light);
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-title {
+            font-size: 1.1rem;
+            color: var(--navy-dark);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .edu-details {
+            display: flex;
+            gap: 15px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           9. المهارات (تصنيف رسمي)
+           ========================================= */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .skill-group {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
         }
 
-        .job-tasks li {
-            position: relative;
-            padding-right: 20px;
-            margin-bottom: 10px;
-            color: var(--text-muted);
+        .skill-group h4 {
+            color: var(--navy-dark);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
+            display: inline-block;
         }
 
-        .job-tasks li::before {
-            content: '\f104'; /* أيقونة سهم Font Awesome */
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            position: relative;
+            padding-right: 18px;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .skill-list li::before {
+            content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
             right: 0;
             top: 2px;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
+            color: var(--gold-primary);
+            font-size: 0.8rem;
         }
 
         /* =========================================
-           7. المؤهلات (Education)
+           10. اللغات
            ========================================= */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .languages {
+            display: flex;
+            gap: 40px;
         }
 
-        .edu-card {
-            background: var(--surface-color);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            text-align: center;
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
+        .lang-item {
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 500;
         }
 
-        .edu-card:hover {
-            transform: translateY(-5px);
-            border-bottom-color: var(--primary-color);
-        }
-
-        .edu-card i {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .edu-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
-
-        .edu-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .lang-item span {
+            color: var(--text-gray);
+            font-weight: 400;
+            margin-right: 5px;
         }
 
         /* =========================================
-           8. المهارات (Skills)
-           ========================================= */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: var(--surface-color);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .skill-category h3 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
-        }
-
-        .skill-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .skill-list li i {
-            color: var(--accent-color);
-            margin-top: 5px;
-        }
-
-        /* =========================================
-           9. اللغات (Languages)
-           ========================================= */
-        .lang-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .lang-card {
-            background: var(--surface-color);
-            padding: 20px 40px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 600;
-        }
-
-        .lang-card i {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-
-        /* =========================================
-           10. التأثيرات الحركية (Scroll Animations)
-           ========================================= */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================================
-           11. التجاوب مع الشاشات (Responsive)
+           11. التجاوب مع الجوال والطباعة
            ========================================= */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
+            body { padding: 10px; }
+            .header, .section { padding: 25px 20px; }
+            .name { font-size: 2rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .exp-header { flex-direction: column; gap: 5px; }
+        }
+
+        /* تحسينات عند طباعة الصفحة (لتقديمها ورقياً) */
+        @media print {
+            body { 
+                background-color: #fff; 
+                padding: 0; 
             }
-            .hero-content h2 {
-                font-size: 1.2rem;
+            .cv-container { 
+                box-shadow: none; 
+                border-top: none;
+                max-width: 100%;
             }
-            .job-date {
-                float: none;
-                display: inline-block;
-                margin-top: 10px;
-                margin-bottom: 15px;
+            .header {
+                color: #000;
+                background-color: #f1f5f9; /* رمادي فاتح للطباعة بدل الكحلي الغامق */
+                border-bottom: 2px solid var(--gold-primary);
             }
-            .contact-badges {
-                flex-direction: column;
-                align-items: center;
-            }
-            .badge {
-                width: 100%;
-                justify-content: center;
-            }
+            .name { color: var(--navy-dark); }
+            .job-title { color: var(--text-gray); }
+            .contact-info { color: #000; border-top-color: #cbd5e1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- =====================================
-         القسم الأول: الهيدر والتعريف
-         ===================================== -->
-    <header id="home">
-        <div class="container hero-content">
-            <!-- يمكن إضافة صورة شخصية هنا لاحقاً بإزالة التعليق -->
-            <!-- <img src="profile.jpg" alt="عبدالله شباط" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid white; margin-bottom: 20px; object-fit: cover;"> -->
+    <div class="cv-container">
+        
+        <!-- ================= الهيدر ================= -->
+        <header class="header">
+            <h1 class="name">عبدالله بن محمد شباط</h1>
+            <div class="job-title">موظف إداري وتنظيم عمليات | تنسيق ومتابعة الأعمال</div>
             
-            <h1>عبدالله بن محمد شباط</h1>
-            <h2>موظف إداري وتنظيم عمليات | تنسيق ومتابعة الأعمال</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>المملكة العربية السعودية – القصيم – بريدة</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span dir="ltr">00966553940572</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Abdallah.shbat@gmail.com</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ================= الملخص الاحترافي ================= -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> الملخص الاحترافي</h2>
+            <p class="summary-text">
+                موظف إداري بخبرة عملية في تنظيم العمليات اليومية، وإدارة البيانات، وإعداد التقارير، وتنسيق الأعمال الإدارية ضمن بيئات عمل تتطلب دقة وانضباطًا عاليًا. أمتلك خبرة في التعامل مع المراجعين، وتنظيم المواعيد، وإدارة الوثائق والمراسلات الرسمية بكفاءة، مع قدرة مثبتة على العمل تحت الضغط وتقديم خدمة احترافية. أسعى للانضمام إلى جهة حكومية والمساهمة في دعم العمل الإداري وتقديم تجربة منظمة ومهنية للمراجعين.
+            </p>
+        </section>
+
+        <!-- ================= الخبرات العملية (Timeline) ================= -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> الخبرات العملية</h2>
             
-            <div class="contact-badges">
-                <div class="badge"><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية – القصيم – بريدة</div>
-                <a href="tel:00966553940572" class="badge" style="color: white;"><i class="fa-solid fa-phone"></i> 00966553940572</a>
-                <a href="mailto:Abdallah.shbat@gmail.com" class="badge" style="color: white;"><i class="fa-solid fa-envelope"></i> Abdallah.shbat@gmail.com</a>
+            <div class="timeline">
+                
+                <!-- خبرة 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="exp-header">
+                        <h3 class="exp-title">أخصائي إدارة مشاريع</h3>
+                        <span class="exp-date">2022 – حتى الآن</span>
+                    </div>
+                    <div class="exp-company">جمعية سنن التعليمية</div>
+                    <ul class="exp-tasks">
+                        <li>إعداد وتنظيم وثائق المشاريع والخطط التنفيذية وفق متطلبات العمل.</li>
+                        <li>متابعة تنفيذ الأعمال اليومية والتأكد من سيرها وفق الجداول الزمنية المحددة.</li>
+                        <li>التنسيق مع الفرق الميدانية وتنظيم توزيع المهام.</li>
+                        <li>الإشراف على العمليات التشغيلية وتنظيم الإجراءات الميدانية.</li>
+                        <li>إعداد التقارير الدورية ورفعها للإدارة لدعم اتخاذ القرار.</li>
+                        <li>متابعة سير العمل والتعامل مع التحديات التشغيلية بشكل مباشر.</li>
+                        <li>تنظيم البيانات واستخدام الأنظمة الرقمية في إدارة العمل.</li>
+                    </ul>
+                </div>
+
+                <!-- خبرة 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="exp-header">
+                        <h3 class="exp-title">إداري عمليات تعليمية</h3>
+                        <span class="exp-date">2015 – 2021</span>
+                    </div>
+                    <div class="exp-company">مركز حفاظ السنة</div>
+                    <ul class="exp-tasks">
+                        <li>إدارة ومتابعة العمليات التعليمية والإدارية اليومية.</li>
+                        <li>استقبال وتنظيم بيانات الطلاب وإدارة السجلات بدقة.</li>
+                        <li>إعداد تقارير يومية ودورية لدعم العمل الإداري.</li>
+                        <li>تنظيم الاختبارات والمواعيد والتنسيق مع المشرفين والطلاب.</li>
+                        <li>إدارة الأرشفة الورقية والإلكترونية للوثائق الرسمية.</li>
+                        <li>إعداد الخطابات والمراسلات الإدارية ومتابعتها.</li>
+                        <li>تنظيم الاجتماعات والفعاليات وضمان جاهزية الإجراءات.</li>
+                    </ul>
+                </div>
+
+                <!-- خبرة 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="exp-header">
+                        <h3 class="exp-title">أخصائي تسويق رقمي <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-gray);">(خبرة داعمة)</span></h3>
+                        <span class="exp-date">2020 – حتى الآن</span>
+                    </div>
+                    <div class="exp-company">عمل خاص</div>
+                    <ul class="exp-tasks">
+                        <li>إدارة الحملات الإعلانية وتحليل النتائج.</li>
+                        <li>إعداد تقارير الأداء وتحليل البيانات.</li>
+                    </ul>
+                </div>
+
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- =====================================
-         القسم الثاني: الملخص الاحترافي
-         ===================================== -->
-    <section id="about" class="container reveal">
-        <h2 class="section-title">الملخص الاحترافي</h2>
-        <div class="about-text">
-            موظف إداري بخبرة عملية في تنظيم العمليات اليومية، وإدارة البيانات، وإعداد التقارير، وتنسيق الأعمال الإدارية ضمن بيئات عمل تتطلب دقة وانضباطًا عاليًا. أمتلك خبرة في التعامل مع المراجعين، وتنظيم المواعيد، وإدارة الوثائق والمراسلات الرسمية بكفاءة، مع قدرة مثبتة على العمل تحت الضغط وتقديم خدمة احترافية. أسعى للانضمام إلى جهة حكومية والمساهمة في دعم العمل الإداري وتقديم تجربة منظمة ومهنية للمراجعين.
-        </div>
-    </section>
-
-    <!-- =====================================
-         القسم الثالث: الخبرات العملية
-         ===================================== -->
-    <section id="experience" class="container reveal">
-        <h2 class="section-title">الخبرات العملية</h2>
-        <div class="timeline">
+        <!-- ================= المؤهلات العلمية ================= -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> المؤهلات العلمية</h2>
             
-            <!-- الوظيفة 1 -->
-            <div class="timeline-item">
-                <span class="job-date"><i class="fa-regular fa-calendar-days"></i> 2022 – حتى الآن</span>
-                <h3 class="job-title">أخصائي إدارة مشاريع</h3>
-                <span class="job-company"><i class="fa-solid fa-building"></i> جمعية سنن التعليمية</span>
-                <ul class="job-tasks">
-                    <li>إعداد وتنظيم وثائق المشاريع والخطط التنفيذية وفق متطلبات العمل.</li>
-                    <li>متابعة تنفيذ الأعمال اليومية والتأكد من سيرها وفق الجداول الزمنية المحددة.</li>
-                    <li>التنسيق مع الفرق الميدانية وتنظيم توزيع المهام.</li>
-                    <li>الإشراف على العمليات التشغيلية وتنظيم الإجراءات الميدانية.</li>
-                    <li>إعداد التقارير الدورية ورفعها للإدارة لدعم اتخاذ القرار.</li>
-                    <li>متابعة سير العمل والتعامل مع التحديات التشغيلية بشكل مباشر.</li>
-                    <li>تنظيم البيانات واستخدام الأنظمة الرقمية في إدارة العمل.</li>
-                </ul>
+            <div class="edu-item">
+                <h3 class="edu-title">شهادة إدارة المشاريع التنموية Project DPro</h3>
+                <div class="edu-details">
+                    <span><i class="fa-regular fa-calendar"></i> 2026</span>
+                </div>
             </div>
 
-            <!-- الوظيفة 2 -->
-            <div class="timeline-item">
-                <span class="job-date"><i class="fa-regular fa-calendar-days"></i> 2015 – 2021</span>
-                <h3 class="job-title">إداري عمليات تعليمية</h3>
-                <span class="job-company"><i class="fa-solid fa-building"></i> مركز حفاظ السنة</span>
-                <ul class="job-tasks">
-                    <li>إدارة ومتابعة العمليات التعليمية والإدارية اليومية.</li>
-                    <li>استقبال وتنظيم بيانات الطلاب وإدارة السجلات بدقة.</li>
-                    <li>إعداد تقارير يومية ودورية لدعم العمل الإداري.</li>
-                    <li>تنظيم الاختبارات والمواعيد والتنسيق مع المشرفين والطلاب.</li>
-                    <li>إدارة الأرشفة الورقية والإلكترونية للوثائق الرسمية.</li>
-                    <li>إعداد الخطابات والمراسلات الإدارية ومتابعتها.</li>
-                    <li>تنظيم الاجتماعات والفعاليات وضمان جاهزية الإجراءات.</li>
-                </ul>
+            <div class="edu-item">
+                <h3 class="edu-title">دبلوم التسويق المتكامل</h3>
+                <div class="edu-details">
+                    <span><i class="fa-solid fa-building-columns"></i> ماستري أكاديمي</span>
+                    <span><i class="fa-regular fa-calendar"></i> 2025</span>
+                </div>
             </div>
 
-            <!-- الوظيفة 3 -->
-            <div class="timeline-item">
-                <span class="job-date"><i class="fa-regular fa-calendar-days"></i> 2020 – حتى الآن</span>
-                <h3 class="job-title">أخصائي تسويق رقمي (خبرة داعمة)</h3>
-                <span class="job-company"><i class="fa-solid fa-briefcase"></i> عمل خاص</span>
-                <ul class="job-tasks">
-                    <li>إدارة الحملات الإعلانية وتحليل النتائج.</li>
-                    <li>إعداد تقارير الأداء وتحليل البيانات.</li>
-                </ul>
+            <div class="edu-item">
+                <h3 class="edu-title">دبلوم تقنيات الحاسوب</h3>
+                <div class="edu-details">
+                    <span><i class="fa-solid fa-building-columns"></i> معهد تقنيات الحاسوب، دمشق</span>
+                    <span><i class="fa-regular fa-calendar"></i> 2012</span>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- =====================================
-         القسم الرابع: المؤهلات العلمية
-         ===================================== -->
-    <section id="education" class="container reveal">
-        <h2 class="section-title">المؤهلات العلمية</h2>
-        <div class="edu-grid">
-            <div class="edu-card">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <h3>دبلوم تقنيات الحاسوب</h3>
-                <p>معهد تقنيات الحاسوب، دمشق</p>
-                <p><strong>2012</strong></p>
-            </div>
+        <!-- ================= المهارات ================= -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> المهارات</h2>
             
-            <div class="edu-card">
-                <i class="fa-solid fa-bullhorn"></i>
-                <h3>دبلوم التسويق المتكامل</h3>
-                <p>ماستري أكاديمي</p>
-                <p><strong>2025</strong></p>
+            <div class="skills-grid">
+                
+                <div class="skill-group">
+                    <h4>المهارات الإدارية</h4>
+                    <ul class="skill-list">
+                        <li>تنظيم العمليات اليومية وضمان انسيابية سير العمل</li>
+                        <li>إعداد ومتابعة التقارير الإدارية</li>
+                        <li>إدارة وتنظيم الوثائق والأرشفة</li>
+                        <li>تنسيق الاجتماعات وتنظيم الجداول</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h4>المهارات الخدمية</h4>
+                    <ul class="skill-list">
+                        <li>استقبال المراجعين وتنظيم طلباتهم</li>
+                        <li>إدارة الاستفسارات وتوجيهها بدقة</li>
+                        <li>التعامل اللبق والاحترافي مع الجمهور</li>
+                        <li>تنظيم المواعيد وتقليل وقت الانتظار</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h4>المهارات التقنية</h4>
+                    <ul class="skill-list">
+                        <li>إتقان Microsoft Office (Excel – Word – PowerPoint)</li>
+                        <li>استخدام Google Workspace لإدارة البيانات</li>
+                        <li>استخدام أدوات تنظيم المهام وإدارة العمل</li>
+                        <li>توظيف الأدوات الرقمية لتحسين الإنتاجية</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h4>المهارات المهنية</h4>
+                    <ul class="skill-list">
+                        <li>إدارة الوقت وتنظيم الأولويات</li>
+                        <li>القدرة على العمل تحت الضغط</li>
+                        <li>مهارات تواصل فعّالة</li>
+                        <li>العمل بروح الفريق والتعاون</li>
+                    </ul>
+                </div>
+
             </div>
+        </section>
 
-            <div class="edu-card">
-                <i class="fa-solid fa-certificate"></i>
-                <h3>شهادة إدارة المشاريع التنموية</h3>
-                <p>Project DPro</p>
-                <p><strong>2026</strong></p>
+        <!-- ================= اللغات ================= -->
+        <section class="section">
+            <h2 class="section-title"><i class="fa-solid fa-language"></i> اللغات</h2>
+            <div class="languages">
+                <div class="lang-item"><i class="fa-solid fa-check" style="color: var(--gold-primary); font-size: 0.8rem; margin-left: 5px;"></i> العربية: <span>لغة أم</span></div>
+                <div class="lang-item"><i class="fa-solid fa-check" style="color: var(--gold-primary); font-size: 0.8rem; margin-left: 5px;"></i> الإنجليزية: <span>مستوى جيد</span></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =====================================
-         القسم الخامس: المهارات
-         ===================================== -->
-    <section id="skills" class="container reveal">
-        <h2 class="section-title">المهارات والكفاءات</h2>
-        <div class="skills-grid">
-            
-            <!-- مهارات إدارية -->
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-folder-open"></i> المهارات الإدارية</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-check"></i> تنظيم العمليات اليومية وضمان الانسيابية</li>
-                    <li><i class="fa-solid fa-check"></i> إعداد ومتابعة التقارير الإدارية</li>
-                    <li><i class="fa-solid fa-check"></i> إدارة وتنظيم الوثائق والأرشفة</li>
-                    <li><i class="fa-solid fa-check"></i> تنسيق الاجتماعات وتنظيم الجداول</li>
-                </ul>
-            </div>
+    </div>
 
-            <!-- مهارات خدمية -->
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-users"></i> المهارات الخدمية</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-check"></i> استقبال المراجعين وتنظيم طلباتهم</li>
-                    <li><i class="fa-solid fa-check"></i> إدارة الاستفسارات وتوجيهها بدقة</li>
-                    <li><i class="fa-solid fa-check"></i> التعامل اللبق والاحترافي مع الجمهور</li>
-                    <li><i class="fa-solid fa-check"></i> تنظيم المواعيد وتقليل وقت الانتظار</li>
-                </ul>
-            </div>
-
-            <!-- مهارات تقنية -->
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-laptop-code"></i> المهارات التقنية</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-check"></i> إتقان Microsoft Office (Excel, Word, Powerpoint)</li>
-                    <li><i class="fa-solid fa-check"></i> استخدام Google Workspace لإدارة البيانات</li>
-                    <li><i class="fa-solid fa-check"></i> استخدام أدوات تنظيم المهام وإدارة العمل</li>
-                    <li><i class="fa-solid fa-check"></i> توظيف الأدوات الرقمية لتحسين الإنتاجية</li>
-                </ul>
-            </div>
-
-            <!-- مهارات مهنية -->
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-user-tie"></i> المهارات المهنية</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-check"></i> إدارة الوقت وتنظيم الأولويات</li>
-                    <li><i class="fa-solid fa-check"></i> القدرة على العمل تحت الضغط</li>
-                    <li><i class="fa-solid fa-check"></i> مهارات تواصل فعّالة</li>
-                    <li><i class="fa-solid fa-check"></i> العمل بروح الفريق والتعاون</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- =====================================
-         القسم السادس: اللغات
-         ===================================== -->
-    <section id="languages" class="container reveal" style="padding-top: 0;">
-        <h2 class="section-title">اللغات</h2>
-        <div class="lang-container">
-            <div class="lang-card">
-                <i class="fa-solid fa-language"></i> العربية (لغة أم)
-            </div>
-            <div class="lang-card">
-                <i class="fa-solid fa-globe"></i> الإنجليزية (مستوى جيد)
-            </div>
-        </div>
-    </section>
-
-    <!-- الفوتر -->
-    <footer style="text-align: center; padding: 30px; background-color: var(--surface-color); color: var(--text-muted); margin-top: 50px; border-top: 1px solid var(--border-color);">
-        <p>&copy; 2026 سيرة ذاتية - عبدالله شباط. جميع الحقوق محفوظة.</p>
-    </footer>
-
-    <!-- =====================================
-         الجافاسكريبت: للتأثيرات الحركية (Scroll Animation)
-         ===================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // تحديد جميع العناصر التي تحتوي على كلاس reveal
-            const reveals = document.querySelectorAll('.reveal');
-
-            // إعداد أداة المراقبة (Intersection Observer)
-            const revealOptions = {
-                threshold: 0.15, // متى يظهر العنصر (15% من العنصر مرئي)
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        // إضافة كلاس active للعنصر لتبدأ الحركة
-                        entry.target.classList.add('active');
-                        // إيقاف مراقبة العنصر بعد ظهوره لتقليل استهلاك الموارد
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, revealOptions);
-
-            // تطبيق المراقبة على كل عنصر
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
-        });
-    </script>
 </body>
 </html>
