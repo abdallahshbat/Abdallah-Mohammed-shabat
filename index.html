@@ -348,6 +348,32 @@
         /* =========================================
            11. التجاوب مع الجوال والطباعة
            ========================================= */
+        /* تصميم زر الطباعة */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--navy-dark);
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-btn:hover {
+            background-color: var(--gold-primary);
+            transform: translateY(-3px);
+        }
+
         @media (max-width: 768px) {
             body { padding: 10px; }
             .header, .section { padding: 25px 20px; }
@@ -358,9 +384,12 @@
 
         /* تحسينات عند طباعة الصفحة (لتقديمها ورقياً) */
         @media print {
+            .print-btn { display: none !important; } /* إخفاء الزر عند الطباعة */
             body { 
                 background-color: #fff; 
                 padding: 0; 
+                -webkit-print-color-adjust: exact; /* إجبار المتصفح على طباعة الألوان */
+                print-color-adjust: exact;
             }
             .cv-container { 
                 box-shadow: none; 
@@ -379,6 +408,11 @@
     </style>
 </head>
 <body>
+
+    <!-- زر الطباعة / الحفظ كـ PDF -->
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-file-pdf"></i> حفظ كملف PDF
+    </button>
 
     <div class="cv-container">
         
