@@ -3,596 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السيرة الذاتية - عبدالله بن محمد شباط</title>
+    <title>عبدالله بن محمد شباط | مدير تسويق ومبيعات</title>
     
-    <!-- خطوط جوجل (Tajawal لسهولة القراءة والرسمية) -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- مكتبة الأيقونات Font Awesome -->
+    <!-- Google Fonts: Cairo & Tajawal for professional Arabic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0A1628',
+                            navymid: '#142240',
+                            navylight: '#1B2D4F',
+                            gold: '#C9A84C',
+                            goldlight: '#E8D48B',
+                            golddim: 'rgba(201,168,76,0.15)',
+                            light: '#f8fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* =========================================
-           1. المتغيرات - الألوان الرسمية (أبيض، كحلي، ذهبي)
-           ========================================= */
-        :root {
-            --bg-page: #f4f6f8; /* لون رمادي فاتح جداً لخلفية الصفحة */
-            --bg-paper: #ffffff; /* لون الورقة الأبيض */
-            
-            --navy-dark: #112240; /* كحلي رسمي وعميق */
-            --navy-light: #1a365d; 
-            
-            --gold-primary: #C5A059; /* ذهبي رسمي مطفأ */
-            --gold-light: #e8dcc4;
-            
-            --text-dark: #1e293b; /* نصوص أساسية */
-            --text-gray: #475569; /* نصوص ثانوية */
-            
-            --border-color: #e2e8f0;
-        }
-
-        /* =========================================
-           2. الإعدادات العامة
-           ========================================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
-
+        /* Custom Styles & Animations */
         body {
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            line-height: 1.8;
-            padding: 40px 20px;
+            background-color: #f3f4f6;
+            scroll-behavior: smooth;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        /* Hero Animations */
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
         }
 
-        /* =========================================
-           3. حاوية السيرة الذاتية (A4 Style)
-           ========================================= */
-        .cv-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: var(--bg-paper);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-top: 8px solid var(--gold-primary);
-            border-radius: 4px;
-            overflow: hidden;
+        .hero-bg-effect-1 {
+            animation: pulse-glow 6s ease-in-out infinite;
+        }
+        .hero-bg-effect-2 {
+            animation: pulse-glow 8s ease-in-out infinite 2s;
         }
 
-        /* =========================================
-           4. الهيدر (معلومات التواصل والاسم)
-           ========================================= */
-        .header {
-            background-color: var(--navy-dark);
-            color: #ffffff;
-            padding: 40px 50px;
-            text-align: right;
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
             position: relative;
         }
-
-        /* زخرفة بسيطة في الهيدر */
-        .header::after {
+        .timeline-container::before {
             content: '';
             position: absolute;
+            top: 0;
             bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--gold-primary);
+            right: 1.5rem; /* For RTL */
+            width: 4px;
+            background: #cbd5e1;
+            border-radius: 2px;
         }
-
-        .name {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            color: #ffffff;
-        }
-
-        .job-title {
-            font-size: 1.2rem;
-            color: var(--gold-primary);
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-item i {
-            color: var(--gold-primary);
-        }
-
-        /* =========================================
-           5. الأقسام العامة (Sections)
-           ========================================= */
-        .section {
-            padding: 35px 50px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--navy-dark);
-            font-weight: 800;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title i {
-            color: var(--gold-primary);
-            font-size: 1.2rem;
-        }
-
-        /* =========================================
-           6. الملخص الاحترافي
-           ========================================= */
-        .summary-text {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            text-align: justify;
-            line-height: 1.9;
-        }
-
-        /* =========================================
-           7. الخبرات العملية (Timeline)
-           ========================================= */
-        .timeline {
-            position: relative;
-            padding-right: 25px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 5px;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--gold-light);
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                right: 1rem;
+            }
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 35px;
+            padding-right: 4rem;
+            margin-bottom: 3rem;
         }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-right: 3rem;
+            }
         }
 
         .timeline-dot {
             position: absolute;
-            right: -31px; /* 25px padding + 6px to center */
-            top: 6px;
-            width: 14px;
-            height: 14px;
+            right: 1.1rem;
+            top: 0.25rem;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background-color: var(--gold-primary);
-            border: 3px solid var(--bg-paper);
+            background: var(--tw-colors-brand-gold, #C9A84C);
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 4px #f8fafc;
         }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .exp-title {
-            font-size: 1.2rem;
-            color: var(--navy-dark);
-            font-weight: 700;
-        }
-
-        .exp-date {
-            font-size: 0.9rem;
-            color: var(--gold-primary);
-            font-weight: 700;
-            background-color: rgba(197, 160, 89, 0.1);
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
-
-        .exp-company {
-            font-size: 1rem;
-            color: var(--text-gray);
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .exp-tasks {
-            list-style: none;
-        }
-
-        .exp-tasks li {
-            position: relative;
-            padding-right: 20px;
-            margin-bottom: 8px;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .exp-tasks li::before {
-            content: '■';
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: var(--gold-primary);
-            font-size: 0.6rem;
-            line-height: 2.5;
-        }
-
-        /* =========================================
-           8. المؤهلات العلمية
-           ========================================= */
-        .edu-item {
-            margin-bottom: 20px;
-            padding-right: 15px;
-            border-right: 3px solid var(--navy-light);
-        }
-
-        .edu-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .edu-title {
-            font-size: 1.1rem;
-            color: var(--navy-dark);
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .edu-details {
-            display: flex;
-            gap: 15px;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* =========================================
-           9. المهارات (تصنيف رسمي)
-           ========================================= */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .skill-group {
-            background-color: #f8fafc;
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .skill-group h4 {
-            color: var(--navy-dark);
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-            border-bottom: 2px solid var(--gold-light);
-            padding-bottom: 8px;
-            display: inline-block;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            position: relative;
-            padding-right: 18px;
-            margin-bottom: 8px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .skill-list li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 0;
-            top: 2px;
-            color: var(--gold-primary);
-            font-size: 0.8rem;
-        }
-
-        /* =========================================
-           10. اللغات
-           ========================================= */
-        .languages {
-            display: flex;
-            gap: 40px;
-        }
-
-        .lang-item {
-            font-size: 1rem;
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .lang-item span {
-            color: var(--text-gray);
-            font-weight: 400;
-            margin-right: 5px;
-        }
-
-        /* =========================================
-           11. التجاوب مع الجوال والطباعة
-           ========================================= */
-        /* تصميم زر الطباعة */
-        .print-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background-color: var(--navy-dark);
-            color: #fff;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .print-btn:hover {
-            background-color: var(--gold-primary);
-            transform: translateY(-3px);
-        }
-
         @media (max-width: 768px) {
-            body { padding: 10px; }
-            .header, .section { padding: 25px 20px; }
-            .name { font-size: 2rem; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .exp-header { flex-direction: column; gap: 5px; }
+            .timeline-dot {
+                right: 0.6rem;
+            }
         }
 
-        /* تحسينات عند طباعة الصفحة (لتقديمها ورقياً) */
-        @media print {
-            .print-btn { display: none !important; } /* إخفاء الزر عند الطباعة */
-            body { 
-                background-color: #fff; 
-                padding: 0; 
-                -webkit-print-color-adjust: exact; /* إجبار المتصفح على طباعة الألوان */
-                print-color-adjust: exact;
+        /* Floating WhatsApp Button Pulse */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .fab-whatsapp {
+            animation: pulse-green 2s infinite;
+        }
+        
+        /* Custom Stats Bar dividers */
+        .stat-divider {
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .stat-divider:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 20%;
+                height: 60%;
+                width: 1px;
+                background: rgba(201,168,76,0.25);
             }
-            .cv-container { 
-                box-shadow: none; 
-                border-top: none;
-                max-width: 100%;
-            }
-            .header {
-                color: #000;
-                background-color: #f1f5f9; /* رمادي فاتح للطباعة بدل الكحلي الغامق */
-                border-bottom: 2px solid var(--gold-primary);
-            }
-            .name { color: var(--navy-dark); }
-            .job-title { color: var(--text-gray); }
-            .contact-info { color: #000; border-top-color: #cbd5e1; }
         }
     </style>
 </head>
-<body>
+<body class="text-gray-800 antialiased selection:bg-brand-gold selection:text-white">
 
-    <!-- زر الطباعة / الحفظ كـ PDF -->
-    <button class="print-btn" onclick="window.print()">
-        <i class="fa-solid fa-file-pdf"></i> حفظ كملف PDF
-    </button>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-16 px-4" style="background: linear-gradient(160deg, #0A1628 0%, #142240 50%, #1B2D4F 100%);">
+        <!-- Abstract Background Effects -->
+        <div class="absolute -top-[30%] -right-[20%] w-[700px] h-[700px] rounded-full hero-bg-effect-1" style="background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);"></div>
+        <div class="absolute -bottom-[20%] -left-[15%] w-[500px] h-[500px] rounded-full hero-bg-effect-2" style="background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);"></div>
 
-    <div class="cv-container">
-        
-        <!-- ================= الهيدر ================= -->
-        <header class="header">
-            <h1 class="name">عبدالله بن محمد شباط</h1>
-            <div class="job-title">موظف إداري وتنظيم عمليات | تنسيق ومتابعة الأعمال</div>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>المملكة العربية السعودية – القصيم – بريدة</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span dir="ltr">00966553940572</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Abdallah.shbat@gmail.com</span>
-                </div>
-            </div>
-        </header>
+        <div class="relative z-10 text-center max-w-4xl mx-auto">
+            <!-- Badge -->
+            <span class="inline-block border text-sm font-medium px-6 py-2 rounded-full mb-6 tracking-wide opacity-0" style="background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.3); color: #E8D48B; animation: fadeUp 0.8s 0.3s forwards;">
+                السيرة الذاتية
+            </span>
 
-        <!-- ================= الملخص الاحترافي ================= -->
-        <section class="section">
-            <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> الملخص الاحترافي</h2>
-            <p class="summary-text">
-                موظف إداري بخبرة عملية في تنظيم العمليات اليومية، وإدارة البيانات، وإعداد التقارير، وتنسيق الأعمال الإدارية ضمن بيئات عمل تتطلب دقة وانضباطًا عاليًا. أمتلك خبرة في التعامل مع المراجعين، وتنظيم المواعيد، وإدارة الوثائق والمراسلات الرسمية بكفاءة، مع قدرة مثبتة على العمل تحت الضغط وتقديم خدمة احترافية. أسعى للانضمام إلى جهة حكومية والمساهمة في دعم العمل الإداري وتقديم تجربة منظمة ومهنية للمراجعين.
+            <!-- Name -->
+            <h1 class="font-cairo text-4xl sm:text-5xl md:text-6xl font-black text-white mb-2 opacity-0" style="animation: fadeUp 0.8s 0.5s forwards;">
+                عبدالله بن محمد شباط
+            </h1>
+
+            <!-- Title -->
+            <p class="font-cairo text-xl md:text-2xl font-bold mb-5 opacity-0" style="color: #C9A84C; animation: fadeUp 0.8s 0.7s forwards;">
+                مدير تسويق ومبيعات
             </p>
-        </section>
 
-        <!-- ================= الخبرات العملية (Timeline) ================= -->
-        <section class="section">
-            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> الخبرات العملية</h2>
+            <!-- Summary -->
+            <p class="text-base md:text-lg text-white/75 max-w-2xl mx-auto mb-8 leading-relaxed opacity-0" style="animation: fadeUp 0.8s 0.9s forwards;">
+                قائد تسويق ومبيعات بخبرة تتجاوز 7 سنوات في قيادة الاستراتيجيات التسويقية وتحقيق نمو الإيرادات لأكثر من 45 علامة تجارية ومشروعاً تجارياً، مع سجل حافل في تحويل الخطط التسويقية إلى نتائج بيعية ملموسة وخبرة إدارية تتجاوز 10 سنوات في القيادة المؤسسية.
+            </p>
+
+            <!-- Contact Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 opacity-0" style="animation: fadeUp 0.8s 1.1s forwards;">
+                <a href="https://wa.me/966553940572" target="_blank" class="flex items-center gap-2 text-white bg-white/5 border border-white/20 px-6 py-3 rounded-xl transition-all duration-300 hover:bg-[#C9A84C] hover:text-[#0A1628] hover:border-[#C9A84C] hover:-translate-y-1 w-full sm:w-auto justify-center">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    00966553940572
+                </a>
+                <a href="mailto:Abdallah.shbat@gmail.com" class="flex items-center gap-2 text-white bg-white/5 border border-white/20 px-6 py-3 rounded-xl transition-all duration-300 hover:bg-[#C9A84C] hover:text-[#0A1628] hover:border-[#C9A84C] hover:-translate-y-1 w-full sm:w-auto justify-center">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Abdallah.shbat@gmail.com
+                </a>
+                <a href="#" class="flex items-center gap-2 text-white bg-white/5 border border-white/20 px-6 py-3 rounded-xl transition-all duration-300 hover:bg-[#C9A84C] hover:text-[#0A1628] hover:border-[#C9A84C] hover:-translate-y-1 w-full sm:w-auto justify-center">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    القصيم – بريدة
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 z-10" style="animation: bounce-slow 2s infinite 2s;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7"><path d="m7 13 5 5 5-5M7 6l5 5 5-5"/></svg>
+        </div>
+    </section>
+
+    <!-- ===== STATS BAR ===== -->
+<section class="relative z-20 py-12 md:py-16 px-4" style="background-color: #0A1628; box-shadow: 0 -10px 30px rgba(0,0,0,0.2);">
+    <div class="container mx-auto max-w-5xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             
-            <div class="timeline">
+            <div class="stat-divider reveal p-4 group">
+                <div class="flex items-baseline justify-center gap-1 font-cairo mb-2" dir="ltr">
+                    <span class="text-brand-gold font-black text-4xl md:text-5xl counter-float transition-transform group-hover:scale-110" data-target="10">0</span>
+                    <span class="text-brand-goldlight font-bold text-2xl">+</span>
+                </div>
+                <div class="text-white/70 text-sm md:text-base font-medium tracking-wide">مليون ريال مبيعات</div>
+            </div>
+
+            <div class="stat-divider reveal p-4 group" style="transition-delay: 0.1s;">
+                <div class="flex items-baseline justify-center gap-1 font-cairo mb-2" dir="ltr">
+                    <span class="text-brand-gold font-black text-4xl md:text-5xl counter transition-transform group-hover:scale-110" data-target="40000">0</span>
+                    <span class="text-brand-goldlight font-bold text-2xl">+</span>
+                </div>
+                <div class="text-white/70 text-sm md:text-base font-medium tracking-wide">طلب شرائي مؤكد</div>
+            </div>
+
+            <div class="stat-divider reveal p-4 group" style="transition-delay: 0.2s;">
+                <div class="flex items-baseline justify-center gap-1 font-cairo mb-2" dir="ltr">
+                    <span class="text-brand-gold font-black text-4xl md:text-5xl counter-float transition-transform group-hover:scale-110" data-target="1.5">0</span>
+                    <span class="text-brand-goldlight font-bold text-2xl">+</span>
+                </div>
+                <div class="text-white/70 text-sm md:text-base font-medium tracking-wide">مليار ظهور إعلاني</div>
+            </div>
+
+            <div class="stat-divider reveal p-4 group" style="transition-delay: 0.3s;">
+                <div class="flex items-baseline justify-center gap-1 font-cairo mb-2" dir="ltr">
+                    <span class="text-brand-gold font-black text-4xl md:text-5xl counter transition-transform group-hover:scale-110" data-target="45">0</span>
+                    <span class="text-brand-goldlight font-bold text-2xl">+</span>
+                </div>
+                <div class="text-white/70 text-sm md:text-base font-medium tracking-wide">علامة تجارية</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== CORE COMPETENCIES (Redesigned) ===== -->
+<section class="py-20 md:py-28 bg-white relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-brand-golddim rounded-full blur-3xl -z-10 opacity-50 transform translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#142240] rounded-full blur-3xl -z-10 opacity-5 transform -translate-x-1/2 translate-y-1/2"></div>
+
+    <div class="container mx-auto px-4 max-w-6xl reveal">
+        <div class="flex flex-col items-center mb-16 text-center">
+            <span class="inline-block font-bold tracking-wider text-brand-gold uppercase mb-3 text-sm">مجالات التميز</span>
+            <h3 class="font-cairo text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">الكفاءات الرئيسية</h3>
+            <div class="flex items-center justify-center gap-2">
+                <div class="h-1 w-8 bg-brand-gold rounded-full"></div>
+                <div class="h-1 w-2 bg-brand-navymid rounded-full"></div>
+                <div class="h-1 w-8 bg-brand-gold rounded-full"></div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Card 1 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#142240] to-[#1B2D4F] transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-[#F8FAFC] rounded-xl flex items-center justify-center mb-6 text-[#142240] group-hover:text-brand-gold group-hover:bg-[#142240] transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-chess-knight text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-[#142240] transition-colors">التخطيط الاستراتيجي</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">إعداد الخطط الاستراتيجية والتشغيلية بدقة ومواءمتها مع الأهداف العليا للمؤسسة لضمان النمو المستدام.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-brand-gold to-brand-goldlight transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-brand-golddim rounded-xl flex items-center justify-center mb-6 text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-brand-gold transition-colors">تطوير المبيعات والإيرادات</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">هندسة مسارات البيع وتحسين معدلات التحويل لزيادة الإيرادات وتحقيق أقصى عائد على الاستثمار (ROI).</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#2E5B82] to-[#1B2D4F] transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-[#F0F5FA] rounded-xl flex items-center justify-center mb-6 text-[#2E5B82] group-hover:bg-[#2E5B82] group-hover:text-white transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-users-cog text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-[#2E5B82] transition-colors">قيادة الفرق وتدريبها</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">بناء وتمكين فرق عمل عالية الأداء، وتطوير قدراتهم من خلال التوجيه المستمر لرفع الإنتاجية.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#8B5E3C] to-[#B38B6D] transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-[#FDF8F5] rounded-xl flex items-center justify-center mb-6 text-[#8B5E3C] group-hover:bg-[#8B5E3C] group-hover:text-white transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-handshake text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-[#8B5E3C] transition-colors">علاقات B2B والتفاوض</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">تأسيس شبكة شراكات استراتيجية متينة مع الموردين والشركات، وإدارة جولات تفاوض تجاري متقدمة.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#0A1628] to-[#142240] transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-6 text-[#0A1628] group-hover:bg-[#0A1628] group-hover:text-white transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-bullhorn text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-[#0A1628] transition-colors">إدارة الحملات التسويقية</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">إدارة حملات إعلانية متعددة المنصات (Omnichannel) وتوجيهها بدقة نحو الشرائح المستهدفة.</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="group relative bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(201,168,76,0.15)] transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+                <div class="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-[#10B981] to-[#059669] transform origin-top transition-transform duration-500 scale-y-0 group-hover:scale-y-100"></div>
+                <div class="w-14 h-14 bg-[#ECFDF5] rounded-xl flex items-center justify-center mb-6 text-[#10B981] group-hover:bg-[#10B981] group-hover:text-white transition-colors duration-500 shadow-sm">
+                    <i class="fas fa-database text-2xl"></i>
+                </div>
+                <h4 class="font-cairo font-bold text-xl text-gray-800 mb-3 group-hover:text-[#059669] transition-colors">تحليل البيانات والمشاريع</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">استخراج رؤى قابلة للتنفيذ من البيانات لدعم صناعة القرار، وإدارة العمليات التشغيلية بمنهجية احترافية.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROFESSIONAL EXPERIENCE TIMELINE (Redesigned) ===== -->
+<section class="py-20 md:py-28 bg-[#F8FAFC]">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <div class="flex flex-col items-center mb-16 text-center reveal">
+            <span class="inline-block font-bold tracking-wider text-brand-gold uppercase mb-3 text-sm">المسار الوظيفي</span>
+            <h3 class="font-cairo text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">الخبرات العملية</h3>
+            <div class="flex items-center justify-center gap-2">
+                <div class="h-1 w-8 bg-brand-gold rounded-full"></div>
+                <div class="h-1 w-2 bg-brand-navymid rounded-full"></div>
+                <div class="h-1 w-8 bg-brand-gold rounded-full"></div>
+            </div>
+        </div>
+
+        <div class="timeline-container relative">
+            <!-- Central Line -->
+            <div class="absolute right-[28px] md:right-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-gold via-brand-navy to-[#F8FAFC] transform md:translate-x-1/2 rounded-full opacity-30 hidden md:block"></div>
+            
+            <!-- Mobile Line -->
+            <div class="absolute right-[28px] top-0 bottom-0 w-1 bg-gradient-to-b from-brand-gold via-brand-navy to-[#F8FAFC] rounded-full opacity-30 md:hidden"></div>
+
+            <!-- Job 1 -->
+            <div class="relative flex items-center justify-between md:justify-normal w-full mb-16 reveal group">
+                <!-- Timeline Dot -->
+                <div class="absolute right-[16px] md:right-1/2 w-6 h-6 rounded-full bg-brand-gold border-4 border-[#F8FAFC] shadow-[0_0_0_4px_rgba(201,168,76,0.2)] transform md:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-[#142240]"></div>
                 
-                <!-- خبرة 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <h3 class="exp-title">أخصائي إدارة مشاريع</h3>
-                        <span class="exp-date">2022 – حتى الآن</span>
+                <div class="w-full pl-0 pr-16 md:pl-8 md:pr-0 md:w-5/12 ml-auto">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-brand-gold transition-all duration-300 relative">
+                        <!-- Date Badge -->
+                        <div class="absolute -top-4 right-6 bg-[#142240] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">2017 – حتى الآن</div>
+                        
+                        <h4 class="font-cairo text-xl md:text-2xl font-bold text-[#142240] mb-1 mt-2">مدير تسويق ومبيعات</h4>
+                        <div class="text-brand-gold font-bold text-sm mb-4">مستشار مستقل — لأكثر من 45 علامة تجارية</div>
+                        
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed line-clamp-3 hover:line-clamp-none transition-all duration-300">
+                            قيادة استراتيجيات شاملة لعملاء مثل: سجاد رياش، سكروب، النزل الفاخر، الغفيص العقارية، وشركات تطوير. تحقيق مبيعات تفوق 10 ملايين ريال وإدارة أكثر من 40,000 طلب عبر تحسين رحلة العميل وبناء شراكات B2B.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 rounded-md text-xs font-medium">+10M مبيعات</span>
+                            <span class="bg-green-50 text-green-700 border border-green-100 px-3 py-1 rounded-md text-xs font-medium">B2B Partnerships</span>
+                            <span class="bg-purple-50 text-purple-700 border border-purple-100 px-3 py-1 rounded-md text-xs font-medium">Real Estate Marketing</span>
+                        </div>
                     </div>
-                    <div class="exp-company">جمعية سنن التعليمية</div>
-                    <ul class="exp-tasks">
-                        <li>إعداد وتنظيم وثائق المشاريع والخطط التنفيذية وفق متطلبات العمل.</li>
-                        <li>متابعة تنفيذ الأعمال اليومية والتأكد من سيرها وفق الجداول الزمنية المحددة.</li>
-                        <li>التنسيق مع الفرق الميدانية وتنظيم توزيع المهام.</li>
-                        <li>الإشراف على العمليات التشغيلية وتنظيم الإجراءات الميدانية.</li>
-                        <li>إعداد التقارير الدورية ورفعها للإدارة لدعم اتخاذ القرار.</li>
-                        <li>متابعة سير العمل والتعامل مع التحديات التشغيلية بشكل مباشر.</li>
-                        <li>تنظيم البيانات واستخدام الأنظمة الرقمية في إدارة العمل.</li>
-                    </ul>
-                </div>
-
-                <!-- خبرة 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <h3 class="exp-title">إداري عمليات تعليمية</h3>
-                        <span class="exp-date">2015 – 2021</span>
-                    </div>
-                    <div class="exp-company">مركز حفاظ السنة</div>
-                    <ul class="exp-tasks">
-                        <li>إدارة ومتابعة العمليات التعليمية والإدارية اليومية.</li>
-                        <li>استقبال وتنظيم بيانات الطلاب وإدارة السجلات بدقة.</li>
-                        <li>إعداد تقارير يومية ودورية لدعم العمل الإداري.</li>
-                        <li>تنظيم الاختبارات والمواعيد والتنسيق مع المشرفين والطلاب.</li>
-                        <li>إدارة الأرشفة الورقية والإلكترونية للوثائق الرسمية.</li>
-                        <li>إعداد الخطابات والمراسلات الإدارية ومتابعتها.</li>
-                        <li>تنظيم الاجتماعات والفعاليات وضمان جاهزية الإجراءات.</li>
-                    </ul>
-                </div>
-
-                <!-- خبرة 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-header">
-                        <h3 class="exp-title">أخصائي تسويق رقمي <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-gray);">(خبرة داعمة)</span></h3>
-                        <span class="exp-date">2020 – حتى الآن</span>
-                    </div>
-                    <div class="exp-company">عمل خاص</div>
-                    <ul class="exp-tasks">
-                        <li>إدارة الحملات الإعلانية وتحليل النتائج.</li>
-                        <li>إعداد تقارير الأداء وتحليل البيانات.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ================= المؤهلات العلمية ================= -->
-        <section class="section">
-            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> المؤهلات العلمية</h2>
-            
-            <div class="edu-item">
-                <h3 class="edu-title">شهادة إدارة المشاريع التنموية Project DPro</h3>
-                <div class="edu-details">
-                    <span><i class="fa-regular fa-calendar"></i> 2026</span>
                 </div>
             </div>
 
-            <div class="edu-item">
-                <h3 class="edu-title">دبلوم التسويق المتكامل</h3>
-                <div class="edu-details">
-                    <span><i class="fa-solid fa-building-columns"></i> ماستري أكاديمي</span>
-                    <span><i class="fa-regular fa-calendar"></i> 2025</span>
-                </div>
-            </div>
-
-            <div class="edu-item">
-                <h3 class="edu-title">دبلوم تقنيات الحاسوب</h3>
-                <div class="edu-details">
-                    <span><i class="fa-solid fa-building-columns"></i> معهد تقنيات الحاسوب، دمشق</span>
-                    <span><i class="fa-regular fa-calendar"></i> 2012</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= المهارات ================= -->
-        <section class="section">
-            <h2 class="section-title"><i class="fa-solid fa-list-check"></i> المهارات</h2>
-            
-            <div class="skills-grid">
+            <!-- Job 2 -->
+            <div class="relative flex items-center justify-between md:justify-normal w-full mb-16 reveal group">
+                <!-- Timeline Dot -->
+                <div class="absolute right-[16px] md:right-1/2 w-6 h-6 rounded-full bg-brand-gold border-4 border-[#F8FAFC] shadow-[0_0_0_4px_rgba(201,168,76,0.2)] transform md:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-[#142240]"></div>
                 
-                <div class="skill-group">
-                    <h4>المهارات الإدارية</h4>
-                    <ul class="skill-list">
-                        <li>تنظيم العمليات اليومية وضمان انسيابية سير العمل</li>
-                        <li>إعداد ومتابعة التقارير الإدارية</li>
-                        <li>إدارة وتنظيم الوثائق والأرشفة</li>
-                        <li>تنسيق الاجتماعات وتنظيم الجداول</li>
-                    </ul>
+                <div class="w-full pr-16 md:pr-8 md:pl-0 md:w-5/12 mr-auto">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-[#142240] transition-all duration-300 relative text-right">
+                         <!-- Date Badge -->
+                         <div class="absolute -top-4 right-6 bg-[#142240] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">2020 – حتى الآن</div>
+                        
+                        <h4 class="font-cairo text-xl md:text-2xl font-bold text-[#142240] mb-1 mt-2">مدير مشاريع تنموية ومؤسسية</h4>
+                        <div class="text-brand-gold font-bold text-sm mb-4">جمعية سنن التعليمية</div>
+                        
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                            إعداد وثائق وخطط المشاريع وفق المعايير الدولية، قيادة الفرق الميدانية والإشراف عليها، تحليل مؤشرات الأداء، وإدارة العلاقة مع الجهات الشريكة والممولة.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-4 justify-start">
+                            <span class="bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded-md text-xs font-medium">إدارة أصحاب المصلحة</span>
+                            <span class="bg-indigo-50 text-indigo-700 border border-indigo-100 px-3 py-1 rounded-md text-xs font-medium">مؤشرات الأداء KPI's</span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="skill-group">
-                    <h4>المهارات الخدمية</h4>
-                    <ul class="skill-list">
-                        <li>استقبال المراجعين وتنظيم طلباتهم</li>
-                        <li>إدارة الاستفسارات وتوجيهها بدقة</li>
-                        <li>التعامل اللبق والاحترافي مع الجمهور</li>
-                        <li>تنظيم المواعيد وتقليل وقت الانتظار</li>
-                    </ul>
-                </div>
-
-                <div class="skill-group">
-                    <h4>المهارات التقنية</h4>
-                    <ul class="skill-list">
-                        <li>إتقان Microsoft Office (Excel – Word – PowerPoint)</li>
-                        <li>استخدام Google Workspace لإدارة البيانات</li>
-                        <li>استخدام أدوات تنظيم المهام وإدارة العمل</li>
-                        <li>توظيف الأدوات الرقمية لتحسين الإنتاجية</li>
-                    </ul>
-                </div>
-
-                <div class="skill-group">
-                    <h4>المهارات المهنية</h4>
-                    <ul class="skill-list">
-                        <li>إدارة الوقت وتنظيم الأولويات</li>
-                        <li>القدرة على العمل تحت الضغط</li>
-                        <li>مهارات تواصل فعّالة</li>
-                        <li>العمل بروح الفريق والتعاون</li>
-                    </ul>
-                </div>
-
             </div>
-        </section>
 
-        <!-- ================= اللغات ================= -->
-        <section class="section">
-            <h2 class="section-title"><i class="fa-solid fa-language"></i> اللغات</h2>
-            <div class="languages">
-                <div class="lang-item"><i class="fa-solid fa-check" style="color: var(--gold-primary); font-size: 0.8rem; margin-left: 5px;"></i> العربية: <span>لغة أم</span></div>
-                <div class="lang-item"><i class="fa-solid fa-check" style="color: var(--gold-primary); font-size: 0.8rem; margin-left: 5px;"></i> الإنجليزية: <span>مستوى جيد</span></div>
+            <!-- Job 3 -->
+            <div class="relative flex items-center justify-between md:justify-normal w-full mb-16 reveal group">
+                <!-- Timeline Dot -->
+                <div class="absolute right-[16px] md:right-1/2 w-6 h-6 rounded-full bg-brand-gold border-4 border-[#F8FAFC] shadow-[0_0_0_4px_rgba(201,168,76,0.2)] transform md:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-[#142240]"></div>
+                
+                <div class="w-full pl-0 pr-16 md:pl-8 md:pr-0 md:w-5/12 ml-auto">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-brand-gold transition-all duration-300 relative">
+                        <!-- Date Badge -->
+                        <div class="absolute -top-4 right-6 bg-[#142240] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">2017 – 2020</div>
+                        
+                        <h4 class="font-cairo text-xl md:text-2xl font-bold text-[#142240] mb-1 mt-2">شريك مؤسس | مدير تسويق</h4>
+                        <div class="text-brand-gold font-bold text-sm mb-4">الريهقان (علامة تجارية متخصصة)</div>
+                        
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                            تأسيس العلامة من الصفر، بناء سلسلة التوريد، التفاوض المباشر مع الموردين، وإدارة المبيعات بالجملة والتجزئة عبر قنوات B2B و B2C.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="bg-rose-50 text-rose-700 border border-rose-100 px-3 py-1 rounded-md text-xs font-medium">سلسلة التوريد</span>
+                            <span class="bg-teal-50 text-teal-700 border border-teal-100 px-3 py-1 rounded-md text-xs font-medium">B2C / B2B Sales</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Job 4 -->
+            <div class="relative flex items-center justify-between md:justify-normal w-full reveal group">
+                <!-- Timeline Dot -->
+                <div class="absolute right-[16px] md:right-1/2 w-6 h-6 rounded-full bg-brand-gold border-4 border-[#F8FAFC] shadow-[0_0_0_4px_rgba(201,168,76,0.2)] transform md:translate-x-1/2 z-10 transition-transform duration-300 group-hover:scale-150 group-hover:bg-[#142240]"></div>
+                
+                <div class="w-full pr-16 md:pr-8 md:pl-0 md:w-5/12 mr-auto">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-[#142240] transition-all duration-300 relative text-right">
+                         <!-- Date Badge -->
+                         <div class="absolute -top-4 right-6 bg-[#142240] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">2015 – 2020</div>
+                        
+                        <h4 class="font-cairo text-xl md:text-2xl font-bold text-[#142240] mb-1 mt-2">مدير عمليات إداري</h4>
+                        <div class="text-brand-gold font-bold text-sm mb-4">مركز حفاظ السنة</div>
+                        
+                        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                            إدارة العمليات اليومية، الإشراف على الإجراءات الإدارية، تطوير إجراءات الأرشفة، وتنظيم المراسلات والعلاقات المؤسسية الخارجية.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SPECIALIZED EXPERIENCE (Hajj/Umrah) - Redesigned ===== -->
+<section class="py-20 bg-white border-t border-gray-100 relative">
+    <div class="container mx-auto px-4 max-w-6xl reveal">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-12 bg-[#0A1628] p-8 rounded-3xl shadow-xl overflow-hidden relative">
+            <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23C9A84C\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+            
+            <div class="relative z-10 w-full md:w-1/2 mb-6 md:mb-0 text-center md:text-right">
+                <span class="inline-block bg-[#1B2D4F] text-brand-goldlight px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-wider">قطاع الضيافة والسياحة الدينية</span>
+                <h3 class="font-cairo text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">خبرة متخصصة في<br> <span class="text-brand-gold">الفندقة وخدمة ضيوف الرحمن</span></h3>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed">فهم عميق لطبيعة السوق الموسمي وديناميكيات الطلب في مواسم الحج والعمرة والتعامل باحترافية مع بعثات وشركات السياحة.</p>
+            </div>
+
+            <div class="relative z-10 w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-[#142240]/80 backdrop-blur-sm border border-brand-gold/20 p-5 rounded-2xl hover:bg-[#142240] transition">
+                    <div class="text-brand-gold text-2xl mb-2"><i class="fas fa-kaaba"></i></div>
+                    <div class="text-white font-bold text-sm mb-1">إشراف وتنظيم (الحج)</div>
+                    <div class="text-gray-400 text-xs leading-relaxed">إدارة حملات وتخطيط لوجستي للفرق الميدانية لـ 3 مواسم (2016-2018)، وتطوع إرشادي (2026).</div>
+                </div>
+                <div class="bg-[#142240]/80 backdrop-blur-sm border border-brand-gold/20 p-5 rounded-2xl hover:bg-[#142240] transition">
+                    <div class="text-brand-gold text-2xl mb-2"><i class="fas fa-hotel"></i></div>
+                    <div class="text-white font-bold text-sm mb-1">تسويق حجوزات (مكة)</div>
+                    <div class="text-gray-400 text-xs leading-relaxed">بيع باقات حجوزات فندقية مع "النزل الفاخر" عبر متجر إلكتروني متخصص للمعتمرين.</div>
+                </div>
+                <div class="bg-[#142240]/80 backdrop-blur-sm border border-brand-gold/20 p-5 rounded-2xl hover:bg-[#142240] transition sm:col-span-2">
+                    <div class="text-brand-gold text-2xl mb-2"><i class="fas fa-moon"></i></div>
+                    <div class="text-white font-bold text-sm mb-1">برامج خدمة ضيوف الرحمن (رمضان)</div>
+                    <div class="text-gray-400 text-xs leading-relaxed">الإشراف المباشر على رحلات العمرة بالتعاون مع جمعيات خيرية متخصصة (2024-2026).</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SKILLS & TOOLS (Redesigned with Colors) ===== -->
+<section class="py-20 bg-[#F8FAFC]">
+    <div class="container mx-auto px-4 max-w-5xl reveal">
+        <div class="text-center mb-12">
+            <h3 class="font-cairo text-3xl font-extrabold text-brand-navy mb-3">المهارات التقنية والأدوات</h3>
+            <p class="text-gray-500 text-sm max-w-2xl mx-auto">مجموعة متكاملة من الأدوات والمهارات المتقدمة لضمان تنفيذ استراتيجيات رقمية وتحليلية ناجحة.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
+            <!-- Strategic skill added as requested -->
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-default">
+                <i class="fas fa-chess-board text-lg"></i>
+                <span class="font-bold text-sm">إعداد الخطط لزيادة المبيعات</span>
+            </div>
+
+            <!-- Analytics -->
+            <div class="group flex items-center gap-2 bg-white border-2 border-indigo-100 text-indigo-700 px-5 py-3 rounded-xl hover:bg-indigo-50 hover:border-indigo-300 transition-all cursor-default shadow-sm">
+                <i class="fas fa-chart-pie text-indigo-500"></i>
+                <span class="font-bold text-sm">تحليل البيانات واتخاذ القرارات</span>
+            </div>
+
+            <!-- Ad Platforms -->
+            <div class="group flex items-center gap-2 bg-white border-2 border-[#4285F4]/20 text-[#4285F4] px-5 py-3 rounded-xl hover:bg-[#4285F4]/10 hover:border-[#4285F4]/40 transition-all cursor-default shadow-sm">
+                <i class="fab fa-google"></i>
+                <span class="font-bold text-sm">Google Ads</span>
+            </div>
+            
+            <div class="group flex items-center gap-2 bg-white border-2 border-[#FFFC00]/40 text-yellow-600 px-5 py-3 rounded-xl hover:bg-yellow-50 hover:border-[#FFFC00]/60 transition-all cursor-default shadow-sm">
+                <i class="fab fa-snapchat-ghost text-yellow-500"></i>
+                <span class="font-bold text-sm">Snapchat Ads</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-white border-2 border-black/10 text-black px-5 py-3 rounded-xl hover:bg-gray-100 hover:border-black/30 transition-all cursor-default shadow-sm">
+                <i class="fab fa-tiktok"></i>
+                <span class="font-bold text-sm">TikTok Ads</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-white border-2 border-[#0668E1]/20 text-[#0668E1] px-5 py-3 rounded-xl hover:bg-[#0668E1]/10 hover:border-[#0668E1]/40 transition-all cursor-default shadow-sm">
+                <i class="fab fa-meta"></i>
+                <span class="font-bold text-sm">Meta Ads</span>
+            </div>
+
+            <!-- Marketing Tools -->
+            <div class="group flex items-center gap-2 bg-white border-2 border-orange-100 text-orange-600 px-5 py-3 rounded-xl hover:bg-orange-50 hover:border-orange-300 transition-all cursor-default shadow-sm">
+                <i class="fas fa-search"></i>
+                <span class="font-bold text-sm">تحسين محركات البحث (SEO)</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-white border-2 border-purple-100 text-purple-700 px-5 py-3 rounded-xl hover:bg-purple-50 hover:border-purple-300 transition-all cursor-default shadow-sm">
+                <i class="fas fa-store"></i>
+                <span class="font-bold text-sm">إدارة المتاجر الإلكترونية</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all cursor-default">
+                <i class="fas fa-robot text-lg"></i>
+                <span class="font-bold text-sm">توظيف الذكاء الاصطناعي (AI)</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-white border-2 border-rose-100 text-rose-600 px-5 py-3 rounded-xl hover:bg-rose-50 hover:border-rose-300 transition-all cursor-default shadow-sm">
+                <i class="fas fa-pen-nib"></i>
+                <span class="font-bold text-sm">كتابة المحتوى التسويقي</span>
+            </div>
+
+            <div class="group flex items-center gap-2 bg-white border-2 border-blue-100 text-blue-700 px-5 py-3 rounded-xl hover:bg-blue-50 hover:border-blue-300 transition-all cursor-default shadow-sm">
+                <i class="fab fa-microsoft"></i>
+                <span class="font-bold text-sm">MS Office & Google Workspace</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== EDUCATION & LANGUAGES (Redesigned) ===== -->
+<section class="py-20 bg-white relative">
+    <div class="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-12">
+        
+        <!-- Education -->
+        <div class="reveal">
+            <h3 class="font-cairo text-2xl font-extrabold text-brand-navy mb-8 border-r-4 border-brand-gold pr-3">المؤهلات العلمية والشهادات</h3>
+            
+            <div class="space-y-5">
+                <div class="flex gap-4 items-start p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-brand-golddim text-brand-gold flex items-center justify-center flex-shrink-0 font-bold text-sm">2026</div>
+                    <div>
+                        <h4 class="font-cairo font-bold text-gray-800 text-lg">شهادة إدارة المشاريع التنموية</h4>
+                        <p class="text-sm text-gray-500 mt-1">Project DPro</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4 items-start p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-brand-golddim text-brand-gold flex items-center justify-center flex-shrink-0 font-bold text-sm">2025</div>
+                    <div>
+                        <h4 class="font-cairo font-bold text-gray-800 text-lg">دبلوم التسويق المتكامل</h4>
+                        <p class="text-sm text-gray-500 mt-1">اعتماد CPD للتطوير المهني المستمر – المملكة المتحدة</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 items-start p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-brand-golddim text-brand-gold flex items-center justify-center flex-shrink-0 font-bold text-sm">2012</div>
+                    <div>
+                        <h4 class="font-cairo font-bold text-gray-800 text-lg">دبلوم تقنيات الحاسوب</h4>
+                        <p class="text-sm text-gray-500 mt-1">معهد تقنيات الحاسوب – دمشق</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages & Training -->
+        <div class="reveal" style="transition-delay: 0.2s;">
+            <h3 class="font-cairo text-2xl font-extrabold text-brand-navy mb-8 border-r-4 border-brand-gold pr-3">اللغات والتطوير</h3>
+            
+            <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-gray-100 mb-6">
+                <!-- Arabic -->
+                <div class="mb-5">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-bold text-gray-800">العربية <span class="text-xs text-gray-500 font-normal ml-2">(اللغة الأم)</span></span>
+                        <span class="text-brand-gold font-bold text-sm">100%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-brand-gold to-[#e8a317] h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <!-- English -->
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-bold text-gray-800">الإنجليزية <span class="text-xs text-gray-500 font-normal ml-2">(مستوى مبتدئ)</span></span>
+                        <span class="text-brand-navymid font-bold text-sm">30%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-brand-navymid h-2 rounded-full" style="width: 30%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Training tags -->
+            <div class="flex flex-wrap gap-2">
+                <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-md border border-gray-200">إدارة المشاريع والتخطيط</span>
+                <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-md border border-gray-200">التسويق الرقمي والبيانات</span>
+                <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1.5 rounded-md border border-gray-200">الإدارة التشغيلية</span>
+            </div>
+        </div>
 
     </div>
+</section>
 
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white/50 py-8 text-center text-sm">
+        <div class="container mx-auto px-4">
+            <p class="mb-2"><strong class="text-brand-gold">عبدالله بن محمد شباط</strong> — مدير تسويق ومبيعات</p>
+            <p>جميع الحقوق محفوظة &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966553940572" target="_blank" class="fab-whatsapp fixed bottom-6 left-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-transform" aria-label="تواصل عبر الواتساب">
+        <svg viewBox="0 0 32 32" fill="currentColor" class="w-7 h-7"><path d="M16.004 2.667c-7.36 0-13.337 5.973-13.337 13.333 0 2.347.613 4.64 1.78 6.66L2.667 29.333l6.84-1.793A13.28 13.28 0 0 0 16.004 29.333c7.36 0 13.333-5.973 13.333-13.333S23.364 2.667 16.004 2.667zm0 24.4a11.04 11.04 0 0 1-5.627-1.54l-.4-.24-4.16 1.093 1.113-4.067-.26-.42a11.013 11.013 0 0 1-1.693-5.893c0-6.107 4.967-11.073 11.073-11.073 6.107 0 11.073 4.967 11.073 11.073-.047 6.107-5.013 11.067-11.12 11.067zm6.073-8.287c-.333-.167-1.967-.973-2.273-1.08-.307-.113-.527-.167-.747.167s-.86 1.08-1.053 1.3c-.193.22-.387.247-.72.08-.333-.167-1.407-.52-2.68-1.653-.993-.887-1.66-1.98-1.853-2.313-.193-.333-.02-.513.147-.68.147-.147.333-.387.5-.58.167-.193.22-.333.333-.553.113-.22.06-.413-.027-.58-.087-.167-.747-1.8-1.027-2.467-.267-.64-.54-.553-.747-.56h-.64c-.22 0-.58.08-.887.413-.307.333-1.16 1.133-1.16 2.767s1.187 3.207 1.353 3.427c.167.22 2.34 3.567 5.667 5 .793.34 1.413.547 1.893.7.793.253 1.52.22 2.093.133.64-.1 1.967-.807 2.247-1.58.28-.773.28-1.44.193-1.58-.08-.14-.3-.22-.633-.387z"/></svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Scroll Reveal Animation Logic
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                reveals.forEach(reveal => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger on load
+
+            // 2. Animated Counters Logic
+            const integerCounters = document.querySelectorAll('.counter');
+            const floatCounters = document.querySelectorAll('.counter-float');
+            let hasCounted = false;
+
+            const startCounters = () => {
+                // Integer counters (e.g. 10, 40000, 45)
+                integerCounters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // 2 seconds
+                    const startTime = performance.now();
+
+                    function easeOutExpo(t) {
+                        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+                    }
+
+                    const updateCounter = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easedProgress = easeOutExpo(progress);
+                        let current = easedProgress * target;
+                        
+                        if(target >= 1000) {
+                            counter.innerText = Math.floor(current).toLocaleString('en-US');
+                        } else {
+                            counter.innerText = Math.floor(current);
+                        }
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            if(target >= 1000) {
+                                counter.innerText = target.toLocaleString('en-US');
+                            } else {
+                                counter.innerText = target;
+                            }
+                        }
+                    };
+                    requestAnimationFrame(updateCounter);
+                });
+
+                // Float counters (e.g. 1.5)
+                floatCounters.forEach(counter => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const startTime = performance.now();
+
+                    function easeOutExpo(t) {
+                        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+                    }
+
+                    const updateCounter = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easedProgress = easeOutExpo(progress);
+                        let current = easedProgress * target;
+                        
+                        counter.innerText = current.toFixed(1);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target.toFixed(1);
+                        }
+                    };
+                    requestAnimationFrame(updateCounter);
+                });
+            };
+
+            // Trigger counters when Stats section is visible
+            const statsSection = document.querySelector('.counter').closest('section');
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting && !hasCounted) {
+                    startCounters();
+                    hasCounted = true;
+                }
+            }, { threshold: 0.5 });
+
+            if(statsSection) {
+                statsObserver.observe(statsSection);
+            }
+        });
+    </script>
 </body>
 </html>
